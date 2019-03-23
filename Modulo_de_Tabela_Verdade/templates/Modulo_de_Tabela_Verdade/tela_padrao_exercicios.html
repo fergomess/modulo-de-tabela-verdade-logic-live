@@ -1,0 +1,69 @@
+{% extends "Modulo_de_Tabela_Verdade/inicio.html" %}
+
+{% block content %}
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Recompensas</h3>
+        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <hr>
+        <h3>Tempo</h3>
+        <h5>05:59 min</h5>
+      </div>
+      <div class="col-md-8">
+       {% for exercicio in dados %}
+           <h2 align="center">Módulo 2 - Exercícios para construção de Tabelas Verdade</h2>
+           <h3 align="center">{{ exercicio.nome }}</h3>
+           <h6>Fórmula:</h6>
+               {% for form in formula %}
+                   <ul>
+                        <li>{{form}}</li>
+                   </ul>
+               {% endfor %}
+               <hr>
+               <h6>Perguntas:</h6>
+               <form>
+                  <div class="form-group">
+                  {% for formulaExercicio in exercicio.Formula_fk_exercicio %}
+                    {% for pergunta in formulaExercicio.Pergunta_Formula_fk_Formula %}
+                        <label for="Inputpergunta{{ pergunta.id }}">{{pergunta.pergunta}}</label>
+                        <input type="text" class="form-control" id="Inputpergunta{{ pergunta.id }}" aria-describedby="emailHelp" placeholder="Insira um número">
+                    {% endfor %}
+                  </div>
+               <button type="submit" class="btn btn-outline-secondary">Responder</button>
+               </form>
+               <hr>
+               <h6>Tabela Verdade:</h6>
+               <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                       {% for object in tabela %}
+                        {% if forloop.first %}
+                           {% for key,value in object.items %}
+                              <th>{{ key }}</th>
+                           {% endfor %}
+                        {% endif %}
+                       {% endfor %}
+                    </tr>
+                  </thead>
+                   <tbody>
+                   {% for object in tabela %}
+                        <tr>
+                            {% for key,value in object.items %}
+                                 <td>{{ value }}</td>
+                            {% endfor %}
+                   {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+           {% endfor %}
+        {% endfor %}
+       <button type="submit" class="btn btn-outline-secondary">Verificar Tabela</button>
+      </div>
+        <hr>
+    </div>
+  </div> <!-- /container -->
+
+{% endblock %}

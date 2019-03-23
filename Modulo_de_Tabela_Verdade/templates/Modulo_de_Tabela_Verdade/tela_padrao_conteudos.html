@@ -1,0 +1,27 @@
+{% extends "Modulo_de_Tabela_Verdade/inicio.html" %}
+
+{% block content %}
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Recompensas</h3>
+        <p>Donec id elit non mi porta at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <hr>
+      </div>
+      <div class="col-md-8">
+       {% for exercicio in dados %}
+           <h2 align="center">Módulo 1 - Conteúdos para Aprendizagem</h2>
+           <h3 align="center">{{ exercicio.nome }}</h3>
+           <ul>
+                <li>{{exercicio.descricao}}</li>
+           </ul>
+        {% endfor %}
+      <button type="submit" class="btn btn-outline-secondary">Concluir Estudo</button>
+      </div>
+        <hr>
+    </div>
+  </div> <!-- /container -->
+
+{% endblock %}
